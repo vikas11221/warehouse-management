@@ -1,0 +1,67 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProductSchema {
+  id: ID!
+  name: String!
+  sizePerUnit: Float!
+  isHazardous: Boolean!
+  quantity: Float!
+}
+
+type WarehouseProductSchema {
+  quantity: Float!
+  product: ProductSchema
+}
+
+type WarehouseSchema {
+  id: ID!
+  name: String!
+  size: Float!
+  hazardousProductsCount: Float!
+  totalProductQuantity: Float!
+  warehouseProducts: [WarehouseProductSchema!]
+}
+
+type Query {
+  products: [ProductSchema!]!
+  warehouses: [WarehouseSchema!]!
+  getFilteredWarehouses(input: WarehouseFilter!): [WarehouseSchema!]!
+}
+
+input WarehouseFilter {
+  id: ID!
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): ProductSchema!
+  updateProduct(input: UpdateProductInput!): ProductSchema!
+  addProductToWarehouse(input: AddProductToWarehouseInput!): WarehouseSchema!
+  exportProductFromWarehouse(input: ExportProductFromWarehouseInput!): WarehouseSchema!
+}
+
+input CreateProductInput {
+  name: String!
+  sizePerUnit: Float!
+  isHazardous: Boolean!
+  quantity: Float!
+}
+
+input UpdateProductInput {
+  id: ID!
+  name: String
+  quantity: Float
+}
+
+input AddProductToWarehouseInput {
+  warehouseId: ID!
+  productId: ID!
+  quantity: Float!
+}
+
+input ExportProductFromWarehouseInput {
+  warehouseId: ID!
+  productId: ID!
+  quantity: Float!
+}
