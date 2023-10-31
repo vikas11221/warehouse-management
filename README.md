@@ -16,6 +16,7 @@ Run migration and start api
 ```
 cd warehouse-monitor/warehouse-monitor-api
 migration:run
+cli:seeds
 yarn start
 http://localhost:3001/graphql
 ```
